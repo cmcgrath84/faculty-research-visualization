@@ -1,0 +1,100 @@
+
+
+body{
+    font-family:'Arial';
+    background-color:#D6D2C4;
+    margin:0;
+}
+
+#container{
+    height:700px;
+    width:1000px;
+        z-index:1;
+    background-image:url('map.png');
+    background-size: contain;
+    border:2px solid black;
+    margin:auto;
+}
+
+#map{
+        z-index:2;
+}
+
+#infobox{
+    position:absolute;
+    height:330px;
+    width:320px;
+    top:30px;
+    left:780px;
+    background-color:rgba(255,255,255,0.7);
+    border:1px solid black;
+    border-radius:10px;
+    padding:5px;
+    display:none;
+}
+
+#infobox img{
+    border:1px solid black;
+    background-color:white;
+    padding:2px;
+    display:inline;
+    margin-right:5px;
+}
+
+#infobox h3{
+    display:inline;
+}
+
+#infobox button{
+    position:absolute;
+    top:320px;
+}
+
+#infobox * {
+    -webkit-animation: fadein 0.2s linear forwards;
+    -moz-animation: fadein 0.2s linear forwards;
+    -o-animation: fadein 0.2s linear forwards;
+    -ms-animation: fadein 0.2s linear forwards;
+    animation: fadein 0.2s linear forwards;
+}
+
+
+@keyframes fadein {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+div.tooltip {   
+  position: absolute;           
+  text-align: center;           
+  padding: 10px;
+  min-width: 50px;
+  margin-top: -20px;
+  margin-left: 0px;
+  opacity: 0.9;
+  color: #444;
+  background: #fff;
+  font: 14px sans-serif;        
+  border: 0px;      
+  border-radius: 8px;           
+  pointer-events: none;         
+}
+
+.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+.node:hover {
+  stroke:red;
+    cursor:pointer;
+}
+
+.link {
+  stroke: blue;
+  stroke-width:1;
+  opacity:0.5;
+}
+
+.avatar{
+}
