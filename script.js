@@ -152,11 +152,6 @@ function draw(faculty, links) {
     
     // force layout
     
-    /* i would like to use forceCollide, forceX, and forceY to 
-    have nodes cluster around building coordinates but i haven't
-    been able to get that to work'*/
-    
-    
     var simulation = d3.forceSimulation(faculty)
     .force('collision', d3.forceCollide(20))
     .force('x', d3.forceX(function(d){return d.x}))
@@ -175,53 +170,36 @@ function draw(faculty, links) {
 }
 
 
-// this function returns an array of objects from coords.json
-
-//function getLocations(){
-//    var locations = [];
-//    fetch('coords.json')
-//        .then(function(response) {return response.json()})
-//        .then(function(data){
-//        data.forEach(function(n){
-//            var location = n.location;
-//            var x = n.x;
-//            var y = n.y;
-//            locations.push({
-//                location: location,
-//                x: x,
-//                y: y
-//            });
-//        });
-//    return locations;
-//    });
-//}
-
-
-// fetch the faculty data, make an object for each person, and put it in an array
+// fetch the data, make an object for each person and location, and put them in respective arrays
 
 fetch('data.json')
     .then(function(response) {return response.json()})
     .then(function(data){
         var faculty = [];
+        var locations = [];
         data.forEach(function(n){
-            var person = n.person;
-            var image = n.icon;
-            var interests = n.interests;
-            var location = n.location;
-            faculty.push({
-                name : person,
-                image : image,
-                interests: interests,
-                location: location
-            });
+            if (n.person !== undefined){
+                var person = n.person;
+                var image = n.icon;
+                var interests = n.interests;
+                var location = n.location;
+                faculty.push({
+                    name : person,
+                    image : image,
+                    interests: interests,
+                    location: location
+                });
+            } else {
+                var location = n.location;
+                var x = n.x;
+                var y = n.y;
+                locations.push({
+                    location: location,
+                    x: x,
+                    y: y
+                });
+            }
         });
-    
-    
-    // array of buildings faculty are in. will fetch this from json later.
-    
-    var locations = [{"location":"Piskor",'x':445,'y':540}, {"location":"Carnegie",'x':400,'y':315},{"location":"Griffiths",'x':620,'y':90}, {"location":"Valentine",'x':595,'y':665}, {"location":"Madill",'x':600,'y':540}, {"location":"ODY",'x':305,'y':265}, {"location":"Johnson",'x':535,'y':565}, {"location":"Vilas",'x':470,'y':105}, {"location":"Flint",'x':660,'y':645}, {"location":"Atwood",'x':365,'y':105}, {"location":"Memorial",'x':410,'y':485}, {"location":"Noble",'x':585,'y':185}];
-    
-//    var locations = getLocations(); 
     
     
     // put building coordinates in each faculty object
